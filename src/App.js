@@ -10,7 +10,8 @@ class App extends Component {
     query: "React",
     resultsDidLoad: false
   };
-  componentDidMount() {
+  makeGithubRequest = e => {
+    e.preventDefault();
     axios
       .get(
         `https://api.github.com/search/issues?q=${
@@ -28,16 +29,27 @@ class App extends Component {
           resultsDidLoad: true
         });
       });
-  }
+  };
   render() {
     return (
       <div className="App">
         <header>Spiffy</header>
-        {this.state.resultsDidLoad ? (
-          <RepoResults results={this.state.results} />
-        ) : (
-          undefined
-        )}
+        <div className="resultsContainer">
+          {this.state.resultsDidLoad ? (
+            <RepoResults results={this.state.results} />
+          ) : (
+            undefined
+          )}
+        </div>
+        <form onSubmit={e => this.makeGithubRequest(e)}>
+          <label htmlsfor="topic">Topic (ex: React, Lodash, Kotlin)</label>
+          <input type="text" placeholder="Enter topic..." />
+          <label htmlsfor="targetLanguage">
+            Target lanugage (ex: JavaScript, Java, OCaml)
+          </label>
+          <input type="text" placholder="Enter language" />
+          <button>Find repos</button>
+        </form>
       </div>
     );
   }
