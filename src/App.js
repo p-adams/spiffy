@@ -5,28 +5,39 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    results: [],
-    language: "",
-    query: "",
-    labels: []
+    results: "",
+    language: "JavaScript",
+    query: "React",
+    resultsDidLoad: false
   };
   componentDidMount() {
     axios
       .get(
-        `https://api.github.com/search/issues?q=${this.state.query}+label:${
-          this.state.labels[0]
-        }+language:${this.state.language}&sort=created&order=asc`,
+        `https://api.github.com/search/issues?q=${
+          this.state.query
+        }+label:good-first-issue+language:${
+          this.state.language
+        }&sort=created&order=asc`,
         {
           headers: { Accept: "application/vnd.github.symmetra-preview+json'" }
         }
       )
-      .then(res => console.log(res.data));
+      .then(githubResults => {
+        this.setState({
+          results: githubResults.data.items,
+          resultsDidLoad: true
+        });
+      });
   }
   render() {
     return (
       <div className="App">
         <header>Spiffy</header>
-        <RepoResults />
+        {this.state.resultsDidLoad ? (
+          <RepoResults results={this.state.results} />
+        ) : (
+          undefined
+        )}
       </div>
     );
   }
