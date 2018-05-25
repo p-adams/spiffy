@@ -33,7 +33,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>Spiffy</header>
+        <header>
+          <h1 className="App-Title">Spiffy</h1>
+        </header>
         <div className="resultsContainer">
           {this.state.resultsDidLoad ? (
             <RepoResults

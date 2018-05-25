@@ -4,7 +4,7 @@ import ResultItem from "./ResultItem";
 const ResultList = props => (
   <ul>
     {props.results.map(result => (
-      <ResultItem key={result.id} resultData={result} />
+      <ResultItem key={result.id} repoData={result} />
     ))}
   </ul>
 );

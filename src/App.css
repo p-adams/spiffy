@@ -1,16 +1,12 @@
 .App {
   text-align: center;
+  background-color: lightblue;
+  height: 100vh;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
+.App-Title {
+  color: #ffee68;
+  font-size: 2.5em;
 }
 
 .resultsContainer {
@@ -20,3 +16,14 @@
 ul {
   list-style: none;
 }
+
+/* 
+colors:
+  purple: #C7ABED
+  yellow: #FFEE68
+  green: #37FFAE
+  blue: #00EAF5
+  pink: #FF7E8A
+
+
+*/

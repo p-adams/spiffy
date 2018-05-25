@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 
 const RepoLabel = label => {
   const labelStyle = {
-    backgroundColor: label.backgroundColor,
+    backgroundColor: "#" + label.backgroundColor,
     padding: "5px",
     color: "white",
     fontWeight: "bolder",
     borderRadius: "5px"
   };
-  return <span style={labelStyle}>{label.text}</span>;
+  return <span style={labelStyle}>{label.name}</span>;
 };
 
 RepoLabel.propTypes = {
-  text: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string.isRequired
 };
 

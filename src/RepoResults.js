@@ -12,7 +12,7 @@ const RepoResults = props => {
         {props.results.length === 1
           ? props.results.length + " repo"
           : props.results.length + " repos"}{" "}
-        with <RepoLabel text={"good-first-issue"} backgroundColor={"#8f00ff"} />{" "}
+        with <RepoLabel name={"good-first-issue"} backgroundColor={"D3D3D3"} />{" "}
         label for query: <span style={spanStyle}>{props.query}</span>, language:{" "}
         <span style={spanStyle}>{props.language}</span>
       </div>
