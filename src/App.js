@@ -6,8 +6,8 @@ import "./App.css";
 class App extends Component {
   state = {
     results: "",
-    language: "JavaScript",
-    query: "Redux",
+    language: "",
+    topic: "",
     resultsDidLoad: false
   };
   makeGithubRequest = e => {
@@ -15,7 +15,7 @@ class App extends Component {
     axios
       .get(
         `https://api.github.com/search/issues?q=${
-          this.state.query
+          this.state.topic
         }+label:good-first-issue+language:${
           this.state.language
         }&sort=created&order=asc`,
@@ -33,77 +33,87 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container h-screen mx-auto border-red-darker border-4">
-        <div className="flex h-full border-red-light border-2">
+      <div className="container h-screen">
+        <div className="flex h-full">
           <div className="w-1/5 bg-grey-light" />
-          <div className="w-3/5 bg-grey-dark">
-            <h1 className="text-center text-yellow">Spiffy</h1>
-
-            {this.state.resultsDidLoad ? (
-              <React.Fragment>
-                <RepoResults
-                  results={this.state.results}
-                  query={this.state.query}
-                  language={this.state.language}
-                />
-                <button
-                  className="shadow bg-purple hover:bg-purple-light text-white font-bold py-2 px-1 rounded"
-                  onClick={() => this.setState({ resultsDidLoad: false })}
+          <div className="w-3/5 h-full bg-grey-dark">
+            <h1 className="text-center px-2 py-2 text-yellow">Spiffy</h1>
+            <div
+              style={{ marginTop: "55px" }}
+              className="rounded overflow-hidden shadow-lg"
+            >
+              {this.state.resultsDidLoad ? (
+                <React.Fragment>
+                  <RepoResults
+                    results={this.state.results}
+                    topic={this.state.topic}
+                    language={this.state.language}
+                  />
+                  <button
+                    className="float-right mt-1 mr-2 mb-2 shadow bg-purple hover:bg-purple-light text-white font-bold py-2 px-1 rounded"
+                    onClick={() =>
+                      this.setState({ results: "", resultsDidLoad: false })
+                    }
+                  >
+                    New search
+                  </button>
+                </React.Fragment>
+              ) : (
+                <form
+                  className="w-full mt-8"
+                  onSubmit={e => this.makeGithubRequest(e)}
                 >
-                  Search for different topic
-                </button>
-              </React.Fragment>
-            ) : (
-              <form
-                className="w-full mt-8 border-green-light border-2"
-                onSubmit={e => this.makeGithubRequest(e)}
-              >
-                <div className="md:flex mb-4">
-                  <div className="md:w-1/5">
-                    <label
-                      className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4"
-                      htmlFor="topic"
-                    >
-                      Topic
-                    </label>
+                  <div className="md:flex mb-4">
+                    <div className="md:w-1/5">
+                      <label
+                        className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4"
+                        htmlFor="topic"
+                      >
+                        Topic
+                      </label>
+                    </div>
+                    <div className="md:w-2/3">
+                      <input
+                        className="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
+                        type="text"
+                        value={this.state.topic}
+                        onChange={e => this.setState({ topic: e.target.value })}
+                        placeholder="Enter topic..."
+                      />
+                    </div>
                   </div>
-                  <div className="md:w-2/3">
-                    <input
-                      className="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
-                      type="text"
-                      value={this.state.query}
-                      placeholder="Enter topic..."
-                    />
+                  <div className="md:flex md:items-center mb-6">
+                    <div className="md:w-1/5">
+                      <label className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4">
+                        Language
+                      </label>
+                    </div>
+                    <div className="md:w-2/3">
+                      <input
+                        className="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
+                        type="text"
+                        value={this.state.language}
+                        onChange={e =>
+                          this.setState({ language: e.target.value })
+                        }
+                        placeholder="Enter language..."
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="md:flex md:items-center mb-6">
-                  <div className="md:w-1/5">
-                    <label className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4">
-                      Language
-                    </label>
+                  <div className="md:flex md:items-center justify-center">
+                    <div className="md:w-1/3" />
+                    <div className="md:w-1/2">
+                      <button
+                        className="mb-2 shadow bg-purple hover:bg-purple-light text-white font-bold py-2 px-1  rounded"
+                        type="submit"
+                      >
+                        Search repos
+                      </button>
+                    </div>
                   </div>
-                  <div className="md:w-2/3">
-                    <input
-                      className="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
-                      type="text"
-                      value={this.state.language}
-                      placeholder="Enter language..."
-                    />
-                  </div>
-                </div>
-                <div className="md:flex md:items-center justify-center">
-                  <div className="md:w-1/3" />
-                  <div className="md:w-1/2">
-                    <button
-                      className="shadow bg-purple hover:bg-purple-light text-white font-bold py-2 px-1  rounded"
-                      type="submit"
-                    >
-                      Search repos
-                    </button>
-                  </div>
-                </div>
-              </form>
-            )}
+                </form>
+              )}
+            </div>
           </div>
           <div className="w-1/5 bg-grey-light" />
         </div>
