@@ -47,24 +47,54 @@ class App extends Component {
             undefined
           )}
         </div>
-        <form onSubmit={e => this.makeGithubRequest(e)}>
-          <label htmlsfor="topic">Topic (ex: React, Lodash, Kotlin)</label>
-          <input
-            type="text"
-            value={this.state.query}
-            onChange={e => this.setState({ query: e.target.value })}
-            placeholder="Enter topic..."
-          />
-          <label htmlsfor="targetLanguage">
-            Target language (ex: JavaScript, Java, Python, etc)
-          </label>
-          <input
-            type="text"
-            value={this.state.language}
-            onChange={e => this.setState({ language: e.target.value })}
-            placholder="Enter language"
-          />
-          <button>Find repos</button>
+        <form
+          className="w-full max-w-xs"
+          onSubmit={e => this.makeGithubRequest(e)}
+        >
+          <div className="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label
+                className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4"
+                htmlfor="topic"
+              >
+                Topic
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                class="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
+                type="text"
+                value={this.state.query}
+                placeholder="Enter topic..."
+              />
+            </div>
+          </div>
+          <div className="md:flex md:items-center mb-6">
+            <div class="md:w-1/3">
+              <label className="block text-yellow font-bold md:text-right mb-1 md:mb-0 pr-4">
+                Language
+              </label>
+            </div>
+            <div className="md:w-2/3">
+              <input
+                class="bg-grey-lighter appearance-none border-2 border-grey-lighter hover:border-purple rounded w-full py-2 px-4 text-grey-darker"
+                type="text"
+                value={this.state.language}
+                placeholder="Enter language..."
+              />
+            </div>
+          </div>
+          <div className="md:flex md:items-center">
+            <div className="md:w-1/3" />
+            <div className="md:w-2/3">
+              <button
+                className="shadow bg-purple hover:bg-purple-light text-white font-bold py-2 px-4 rounded"
+                type="submit"
+              >
+                Search repos
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     );
