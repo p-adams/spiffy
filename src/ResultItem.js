@@ -8,6 +8,8 @@ const ResultItem = props => {
         user={props.repoData.user}
         title={props.repoData.title}
         htmlUrl={props.repoData.html_url}
+        repoUrl={props.repoData.repository_url}
+        body={props.repoData.body}
         labels={props.repoData.labels}
         issueState={props.repoData.state}
         createdAt={props.repoData.created_at}

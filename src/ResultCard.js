@@ -1,4 +1,5 @@
 import React from "react";
+import { parseRepoName } from "./utils/parseRepoName";
 import RepoLabel from "./RepoLabel";
 
 const CardStyle = {
@@ -38,6 +39,8 @@ const ResultCard = props => {
         <a href={user.html_url}>{user.login}</a>
         <img style={UserAvatarImage} src={user.avatar_url} alt="meow" />
       </div>
+      <div>Repo name: {parseRepoName(props.repoUrl)}</div>
+      <div>Body: {props.body}</div>
       <div style={UserMetadataContainer}>
         <ul>{repoLabels}</ul>
         <p>Issue is: {props.issueState}</p>
