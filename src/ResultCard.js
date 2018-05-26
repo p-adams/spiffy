@@ -15,7 +15,7 @@ const ResultCard = props => {
     <div className="max-w-md w-full lg:flex rounded overflow-hidden shadow-lg px-2 py-2 mt-4 bg-grey-dark">
       <div>
         <div className="lg:h-auto lg:w-12 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-          <img src={user.avatar_url} title="GitHub avatar" />
+          <img src={user.avatar_url} alt="avatar" title="GitHub avatar" />
         </div>
         <div className="text-sm">
           <a href={user.html_url}>{user.login}</a>
