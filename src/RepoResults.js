@@ -6,7 +6,7 @@ const spanStyle = {
 };
 const RepoResults = props => {
   return (
-    <div>
+    <div className="mt-8">
       <div>
         We found{" "}
         {props.results.length === 1
