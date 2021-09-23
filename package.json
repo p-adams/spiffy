@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
   },
   "scripts": {
     "watch:css": "postcss src/styles/index.css -o src/index.css",
@@ -16,8 +16,20 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "axios": "^0.18.0",
-    "prop-types": "^15.6.1",
-    "react-test-renderer": "^16.4.0"
+    "axios": "^0.21.4",
+    "prop-types": "^15.7.2",
+    "react-test-renderer": "^17.0.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
